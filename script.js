@@ -2,7 +2,3 @@
 function capitalize(str) {
     return str[0].toUpperCase()
 }
-
-module.exports = {
-    capitalize,
-}
