@@ -1,5 +1,16 @@
-export default calculator = {
-    add: function(num1, num2) {
+const calculator = {
+    add(num1, num2) {
         return num1 + num2
     },
+    subtract(num1, num2) {
+        return num1 - num2
+    },
+    divide(num1, num2) {
+        return num1 / num2
+    },
+    multiply(num1, num2) {
+        return num1 * num2
+    }
 }
+
+export default calculator
