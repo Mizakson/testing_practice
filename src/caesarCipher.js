@@ -6,7 +6,7 @@ export default function caesarCipher(str, shift) {
 
         // charCode > 96 and < 123
         // lowercase a-z
-        if (letter > 96 && letter < 123) {
+        if (letter >= 97 && letter <= 122) {
             // account for wrapping
             if (letter + shift > 122 || letter + shift < 97) {
             // global ascii table from String object and fromCharCode
@@ -18,9 +18,9 @@ export default function caesarCipher(str, shift) {
 
         // charCode > 64 and < 91
         // uppercase A-Z
-        else if (letter > 64 && letter < 91) {
+        else if (letter >= 65 && letter <= 90) {
             // account for wrapping
-            if (letter + shift > 90 || letter - shift < 65) {
+            if (letter + shift > 90 || letter + shift < 65) {
                 output += String.fromCharCode((letter + shift) - 91 + 64)
             } else {
                 output += String.fromCharCode(letter + shift)
