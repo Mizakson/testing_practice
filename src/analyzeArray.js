@@ -1,4 +1,4 @@
-export default function analyzeArr(arr) {
+export default function analyzeArray(arr) {
     let len = arr.length
     
     // average
