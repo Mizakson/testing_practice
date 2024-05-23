@@ -1,36 +1,32 @@
 export default function caesarCipher(str, shift) {
-    let output = ""
-
-    for (let i = 0; i < str.length; i++) {
-        const letter = str.charCodeAt(i)
-
-        // charCode > 96 and < 123
-        // lowercase a-z
-        if (letter >= 97 && letter <= 122) {
-            // account for wrapping
-            if (letter + shift > 122 || letter + shift < 97) {
-            // global ascii table from String object and fromCharCode
-            output += String.fromCharCode((letter + shift) - 123 + 96 % 26)
-            } else {
-                output += String.fromCharCode(letter + shift)
-            }
-        } 
-
-        // charCode > 64 and < 91
-        // uppercase A-Z
-        else if (letter >= 65 && letter <= 90) {
-            // account for wrapping
-            if (letter + shift > 90 || letter + shift < 65) {
-                output += String.fromCharCode((letter + shift) - 91 + 64 % 26)
-            } else {
-                output += String.fromCharCode(letter + shift)
-            }
-        }
-        // non-letters
-        else {
-            output += String.fromCharCode(letter)
-        } 
-    }
     
-    return output
+    if (typeof str !== "string") throw new Error("Enter a valid phrase: string")
+    if (typeof shift !== "number") throw new Error("Enter a valid shift factor: number")
+
+    const lowerABC = "abcdefghijklmnopqrstuvwxyz"
+    const upperABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    return str
+    .split("")
+    .map((letter) => {
+
+        if (lowerABC.includes(letter)) {
+            let index = lowerABC.indexOf(letter)
+            // account for wrapping using modulus
+            let newIndex = (index + shift) % 26
+            return lowerABC[newIndex]
+        }
+
+        else if (upperABC.includes(letter)) {
+            let index = upperABC.indexOf(letter)
+            // account for wrapping using modulus
+            let newIndex = (index + shift) % 26
+            return upperABC[newIndex]
+        }
+        else {
+            // if not a letter, just return it
+            return letter
+        }
+    }).join("")
+
 }
